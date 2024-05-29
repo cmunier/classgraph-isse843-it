@@ -9,7 +9,11 @@ This is an example project that demonstrates usage of [ClassGraph](https://githu
 /ear $ mvn wildfly-jar:package wildfly-jar:run
 ```
 
-## Expected result
+## Test failure
+
+The output of the JBoss server running the test application should contain a line with should throw an exception with message "Test failed".
+
+## Test success
 
 The output of the JBoss server running the test application should contain a line with
 
