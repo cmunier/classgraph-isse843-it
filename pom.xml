@@ -49,7 +49,7 @@
 					<configuration>
 						<featurePackLocation>org.jboss.eap:wildfly-galleon-pack:4.0.2.GA-redhat-00003</featurePackLocation> <!-- includes org.jboss.eap:wildfly-ee-galleon-pack:7.4.15.GA-redhat-00002 -->
 						<jvmArguments>
-							<arg>-agentlib:jdwp=transport=dt_socket,address=8000,server=y,suspend=y</arg>
+							<arg>-agentlib:jdwp=transport=dt_socket,address=8000,server=y,suspend=n</arg>
 						</jvmArguments>
 					</configuration>
 				</plugin>
