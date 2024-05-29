@@ -1,0 +1,59 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.github.cmunier.example.classgraph.issue843</groupId>
+	<artifactId>classgraph-ear-example</artifactId>
+	<packaging>pom</packaging>
+	<version>0.0.1-SNAPSHOT</version>
+
+	<description>Demonstrator for classgraph#843 on JBoss EAP 7.4.15</description>
+	<url>https://github.com/cmunier</url>
+	<developers>
+		<developer>
+			<id>cmunier</id>
+			<name>Christian Munier</name>
+			<url>https://github.com/cmunier</url>
+		</developer>
+	</developers>
+
+	<modules>
+		<module>ear</module>
+		<module>ejb</module>
+		<module>war</module>
+	</modules>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>io.github.classgraph</groupId>
+				<artifactId>classgraph</artifactId>
+				<version>4.8.172</version>
+			</dependency>
+			<dependency> <!-- Java EE 8 -->
+				<groupId>javax.servlet</groupId>
+				<artifactId>javax.servlet-api</artifactId>
+				<version>4.0.0</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.wildfly.plugins</groupId>
+					<artifactId>wildfly-jar-maven-plugin</artifactId>
+					<version>11.0.2.Final</version>
+					<configuration>
+						<featurePackLocation>org.jboss.eap:wildfly-galleon-pack:4.0.2.GA-redhat-00003</featurePackLocation> <!-- includes org.jboss.eap:wildfly-ee-galleon-pack:7.4.15.GA-redhat-00002 -->
+						<jvmArguments>
+							<arg>-agentlib:jdwp=transport=dt_socket,address=8000,server=y,suspend=y</arg>
+						</jvmArguments>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+</project>
